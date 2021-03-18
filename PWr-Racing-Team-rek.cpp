@@ -148,13 +148,19 @@ int main()
 {
     float green=1, yellow=1, red=1;
 
-    cout<<"Podaj wartosc zielona: ";
+    cout<<"Podaj wartosc zielona (wartosc nie moze byc ujemna): ";
     cin>>green;
-    cout<<endl<<"Podaj wartosc zolta: ";
+    cout<<endl<<"Podaj wartosc zolta (wartosc nie moze byc ujemna): ";
     cin>>yellow;
-    cout<<endl<<"Podaj wartosc czerwona: ";
+    cout<<endl<<"Podaj wartosc czerwona (wartosc nie moze byc ujemna): ";
     cin>>red;
 
+	if(green<0 || yellow<0 || red<0) 
+	{	
+		cout<<"ERROR - podano ujemne dane!";
+		getchar();getchar();
+		exit(0);
+	}
     struct node *tree = fillTree(green, yellow, red);
 
     searchAllRootToleafPaths(tree);
@@ -162,7 +168,9 @@ int main()
     for (float data: best_path) {
             cout << data << " ";
         }
-        cout<<" SUMA "<<min_val<<endl;
+    cout<<endl<<" Laczny koszt: "<<min_val<<endl;
+
+	getchar();getchar();
 
 	return 0;
 }
